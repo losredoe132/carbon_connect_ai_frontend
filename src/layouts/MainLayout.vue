@@ -19,11 +19,15 @@
       <q-list>
 
         <q-item>
-          Some Link
+          <q-item-section>
+            <q-btn flat @click="$router.push('/survey')">
+              Survey Overview
+            </q-btn>
+          </q-item-section>
         </q-item>
 
         <q-item>
-          Some Link
+          
         </q-item>
 
 

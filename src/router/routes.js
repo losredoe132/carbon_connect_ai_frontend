@@ -7,7 +7,15 @@ const routes = [
     ]
   },
   {
-    path: '/survey',
+    path: '/survey/',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [
+      { path: '', component: () => import('pages/SurveyOverviewPage.vue') }
+    ]
+  },
+
+  {
+    path: '/survey/:surveyId',
     component: () => import('layouts/MainLayout.vue'),
     children: [
       { path: '', component: () => import('pages/SurveyPage.vue') }
