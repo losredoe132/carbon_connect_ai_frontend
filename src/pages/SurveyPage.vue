@@ -57,7 +57,10 @@
             <q-list>
               <q-item v-for="(value, key) in section.indicators" :key="key">
                 <q-item-section>
-                  <q-item-label><strong>{{ key }}</strong>: {{ value }}</q-item-label>
+                  <q-item-label class="row">
+                    <div> <q-badge color="red" rounded class="q-mr-sm" /> </div>
+                    <strong>{{ key }}</strong>: {{ value }}
+                  </q-item-label>
                 </q-item-section>
               </q-item>
             </q-list>

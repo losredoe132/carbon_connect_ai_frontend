@@ -12,15 +12,21 @@ import { useRouter } from 'vue-router'
 const router = useRouter()
 
 const rows = ref([
-    { id: 1, name: 'Alice', age: 25, email: 'alice@example.com' },
-    { id: 2, name: 'Bob', age: 30, email: 'bob@example.com' },
-    { id: 3, name: 'Charlie', age: 28, email: 'charlie@example.com' }
+    { id: "a098sf0ah093", valid_image: true, valid_biochar: true, },
+    { id: "aohfa83hiahww", valid_image: true, valid_biochar: false, },
+    { id: "a09s8f093hf09", valid_image: true, valid_biochar: true, }
+    , { id: "a09s8f093hf09", valid_image: true, valid_biochar: true, }
+    , { id: "a09s8f093hf09", valid_image: true, valid_biochar: true, }
+    , { id: "a09s8f093hf09", valid_image: true, valid_biochar: true, }
+    , { id: "a09s8f093hf09", valid_image: true, valid_biochar: true, }
+    , { id: "a09s8f093hf09", valid_image: true, valid_biochar: true, }
+
 ])
 
 const columns = [
     { name: 'id', label: 'ID', field: 'id', sortable: true },
-    { name: 'name', label: 'Name', field: 'name', sortable: true },
-    { name: 'age', label: 'Age', field: 'age', sortable: true },
+    { name: 'valid_image', label: 'valid_image', field: 'valid_image', sortable: true },
+    { name: 'valid_biochar', label: 'valid_biochar', field: 'valid_biochar', sortable: true },
 ]
 
 const pagination = ref({
