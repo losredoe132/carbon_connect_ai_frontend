@@ -6,12 +6,11 @@
         <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" />
 
         <q-toolbar-title>
-          <q-avatar>
-            <img src="https://cdn.quasar.dev/logo-v2/svg/logo-mono-white.svg">
-          </q-avatar>
-          Title
+          Carbon Connect AI
         </q-toolbar-title>
-
+        <q-toolbar class="">
+          <div>Quasar v{{ $q.version }}</div>
+        </q-toolbar>
       </q-toolbar>
     </q-header>
 
@@ -19,18 +18,15 @@
 
       <q-list>
 
-        <q-item-label>
-          header
-        </q-item-label>
-
         <q-item>
           Some Link
         </q-item>
 
         <q-item>
-          <div>Quasar v{{ $q.version }}</div>
-
+          Some Link
         </q-item>
+
+
 
       </q-list>
 
