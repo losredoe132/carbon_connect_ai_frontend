@@ -7,30 +7,7 @@
 
     <!-- Expandable Meta Info Section -->
 
-    <q-card>
-      <div class="q-pa-md">
-        <q-list>
-          <q-item>
-            <q-item-section>
-              <q-item-label overline>Survey ID</q-item-label>
-              <q-item-label>oidahs938hjodazu38j </q-item-label>
-            </q-item-section>
-            <q-item-section>
-              <q-item-label overline>Location</q-item-label>
-              <q-item-label>32.234234, 23.123434 </q-item-label>
-            </q-item-section>
-            <q-item-section>
-              <q-item-label overline>Observer</q-item-label>
-              <q-item-label>Some Body</q-item-label>
-            </q-item-section>
-            <q-item-section>
-              <q-item-label overline>Created</q-item-label>
-              <q-item-label>2024/05/29 23:32:23</q-item-label>
-            </q-item-section>
-          </q-item>
-        </q-list>
-      </div>
-    </q-card>
+    <SurveyMeta :survey_id=survey_id />
 
     <!-- Sections -->
     <div v-for="section in sections" :key="section.name" class="q-mt-md">
@@ -72,55 +49,25 @@
   </q-page>
 </template>
 
-<script>
-export default {
-  name: "SurveyPage",
-  data() {
-    return {
-      surveyId: "12345", // Example survey ID
-      metaInfo: {
-        "Survey Date": "2023-10-01",
-        "Surveyor Name": "John Doe",
-        "Location": "Farm A",
-      },
-      sections: [
-        {
-          name: "Biochar",
-          images: [
-            { id: 1, src: "biochar1.jpg", alt: "Biochar Image 1" },
-            { id: 2, src: "biochar2.jpg", alt: "Biochar Image 2" },
-          ],
-          indicators: {
-            "Is Valid Biochar": "Yes",
-            "Is Valid Image": "Yes",
-          },
-        },
-        {
-          name: "Moisture Measurement",
-          images: [
-            { id: 3, src: "https://plantvillage-production-new.s3.amazonaws.com/images%2F50a504f8-9700-4492-a683-434363c4237b%2Fgeneral-production-biochar_production_finished_burn-2024-07-12T14%3A37%3A33.937Z-c8988be6-f7d6-4c9d-bc54-76f8ec5ec09a.webp", alt: "Moisture Image 1" },
-            { id: 4, src: "moisture2.jpg", alt: "Moisture Image 2" },
-          ],
-          indicators: {
-            "Is Valid Measurement": "False",
-            "Is Valid Image": "False",
-          },
-        },
-        {
-          name: "Bags",
-          images: [
-            { id: 5, src: "bag1.jpg", alt: "Bag Image 1" },
-            { id: 6, src: "bag2.jpg", alt: "Bag Image 2" },
-          ],
-          indicators: {
-            "Is Valid Bag": "Yes",
-            "Is Valid Image": "Yes",
-          },
-        },
-      ],
-    };
-  },
-};
+
+<script setup>
+import { onMounted, ref } from 'vue'
+import { api } from 'boot/axios'
+import SurveyMeta from 'components/SurveyMeta.vue'
+
+const survey_info = ref(null)
+const survey_id = ref("")
+
+const fetchData = async (surveyId) => {
+  const res = await api.get(`/report/${surveyId}`)
+  const data = res.data
+  survey_id.value = data.survey_info.biochar_production_survey_id
+}
+
+onMounted(() => {
+  const res = fetchData("70b69ccb-9fba-49b9-8d3c-5d755c6a17d7")
+  survey_info.value = res.data
+})
 </script>
 
 <style scoped>
