@@ -1,5 +1,5 @@
-import { defineBoot } from "/node_modules/.q-cache/dev-spa/vite-spa/deps/@quasar_app-vite_wrappers.js?v=0dc54174"
-import axios from "/node_modules/.q-cache/dev-spa/vite-spa/deps/axios.js?v=0dc54174"
+import { defineBoot } from "#q-app/wrappers"
+import axios from "axios"
 
 // Be careful when using SSR for cross-request state pollution
 // due to creating a Singleton instance here;
