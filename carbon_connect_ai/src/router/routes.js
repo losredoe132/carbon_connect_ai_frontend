@@ -1,9 +1,24 @@
 const routes = [
   {
     path: '/',
-    component: () => import('layouts/MainLayout.vue'),
+    component: () => import("/src/layouts/MainLayout.vue"),
     children: [
-      { path: '', component: () => import('pages/IndexPage.vue') }
+      { path: '', component: () => import("/src/pages/IndexPage.vue") }
+    ]
+  },
+  {
+    path: '/survey/',
+    component: () => import("/src/layouts/MainLayout.vue"),
+    children: [
+      { path: '', component: () => import("/src/pages/SurveyOverviewPage.vue") }
+    ]
+  },
+
+  {
+    path: '/survey/:surveyId',
+    component: () => import("/src/layouts/MainLayout.vue"),
+    children: [
+      { path: '', component: () => import("/src/pages/SurveyPage.vue") }
     ]
   },
 
@@ -11,7 +26,7 @@ const routes = [
   // but you can also remove it
   {
     path: '/:catchAll(.*)*',
-    component: () => import('pages/ErrorNotFound.vue')
+    component: () => import("/src/pages/ErrorNotFound.vue")
   }
 ]
 

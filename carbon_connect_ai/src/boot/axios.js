@@ -1,5 +1,5 @@
-import { defineBoot } from '#q-app/wrappers'
-import axios from 'axios'
+import { defineBoot } from "/node_modules/.q-cache/dev-spa/vite-spa/deps/@quasar_app-vite_wrappers.js?v=0dc54174"
+import axios from "/node_modules/.q-cache/dev-spa/vite-spa/deps/axios.js?v=0dc54174"
 
 // Be careful when using SSR for cross-request state pollution
 // due to creating a Singleton instance here;
@@ -7,7 +7,7 @@ import axios from 'axios'
 // good idea to move this instance creation inside of the
 // "export default () => {}" function below (which runs individually
 // for each client)
-const api = axios.create({ baseURL: 'https://api.example.com' })
+const api = axios.create({ baseURL: 'http://localhost:8080' })
 
 export default defineBoot(({ app }) => {
   // for use inside Vue files (Options API) through this.$axios and this.$api
