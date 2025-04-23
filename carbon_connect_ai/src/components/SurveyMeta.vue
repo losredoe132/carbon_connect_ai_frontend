@@ -27,26 +27,26 @@
 defineProps({
   survey_id: {
     type: String,
-    default: ''
+    default: '',
   },
 
   timestamp: {
     type: String,
-    required: true
+    required: true,
   },
 
   observer: {
     type: String,
-    required: true
+    required: true,
   },
 
   lat: {
     type: String,
-    required: true
+    required: true,
   },
   lon: {
     type: String,
-    required: true
-  }
+    required: true,
+  },
 })
 </script>

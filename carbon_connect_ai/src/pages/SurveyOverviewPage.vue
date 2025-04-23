@@ -2,11 +2,9 @@
   <q-page class="q-pa-md">
     <h1 class="text-h5 q-mb-md">Survey Overview</h1>
 
-      <SurveyOverviewTable />
-
+    <SurveyOverviewTable />
   </q-page>
 </template>
-
 
 <script setup>
 import SurveyOverviewTable from 'components/SurveyOverviewTable.vue'

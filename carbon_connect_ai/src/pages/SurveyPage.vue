@@ -1,17 +1,19 @@
 <template>
   <q-page class="q-pa-md">
     <!-- Survey ID Heading -->
-    <div class="text-h5 q-mb-md">
-      Survey ID: {{ survey_id }}
-    </div>
+    <div class="text-h5 q-mb-md">Survey ID: {{ survey_id }}</div>
     <q-list>
       <!-- Expandable Meta Info Section -->
 
       <q-card class="q-mb-md">
-        <SurveyMeta :survey_id="survey_id" :timestamp="timestamp" :lat="survey_lat" :lon="survey_lon"
-          :observer="observer_name" />
+        <SurveyMeta
+          :survey_id="survey_id"
+          :timestamp="timestamp"
+          :lat="survey_lat"
+          :lon="survey_lon"
+          :observer="observer_name"
+        />
       </q-card>
-
 
       <!-- Sections -->
       <q-card>
@@ -25,14 +27,15 @@
 
           <q-card class="row">
             <div v-for="(item, title) in biochar_images" v-bind:key="item.id">
-              <SurveyImageCard :title=title :item=item :desired_values=desired_values_biochar />
+              <SurveyImageCard
+                :title="title"
+                :item="item"
+                :desired_values="desired_values_biochar"
+              />
             </div>
           </q-card>
-
         </q-expansion-item>
-
       </q-card>
-
 
       <q-card>
         <q-expansion-item class="q-mb-md" expand-separator>
@@ -45,19 +48,18 @@
 
           <q-card class="row">
             <div v-for="(item, title) in moisture_images" v-bind:key="item.id">
-              <SurveyImageCard :title=title :item=item :desired_values=desired_values_moisture />
+              <SurveyImageCard
+                :title="title"
+                :item="item"
+                :desired_values="desired_values_moisture"
+              />
             </div>
           </q-card>
-
         </q-expansion-item>
-
       </q-card>
     </q-list>
-
-
   </q-page>
 </template>
-
 
 <script setup>
 import { onMounted, ref } from 'vue'
@@ -66,11 +68,11 @@ import SurveyMeta from 'components/SurveyMeta.vue'
 import SurveyImageCard from 'components/SurveyImageCard.vue'
 
 const survey_info = ref(null)
-const survey_id = ref("")
-const survey_lat = ref("")
-const survey_lon = ref("")
-const observer_name = ref("")
-const timestamp = ref("")
+const survey_id = ref('')
+const survey_lat = ref('')
+const survey_lon = ref('')
+const observer_name = ref('')
+const timestamp = ref('')
 
 const biochar_images = ref()
 const moisture_images = ref()
@@ -81,14 +83,13 @@ desired_values_biochar.value = {
   valid_biochar_detected: true,
   valid_carbonisation: true,
   valid_image_quality: true,
-  valid_environmental_context: true
+  valid_environmental_context: true,
 }
 
 const desired_values_moisture = ref()
 desired_values_moisture.value = {
-  moisture: 15
+  moisture: 15,
 }
-
 
 const fetchData = async (surveyId) => {
   const res = await api.get(`/report/${surveyId}`)
@@ -104,9 +105,8 @@ const fetchData = async (surveyId) => {
   biochar_images_valid.value = true
 }
 
-
 onMounted(() => {
-  const res = fetchData("70b69ccb-9fba-49b9-8d3c-5d755c6a17d7")
+  const res = fetchData('70b69ccb-9fba-49b9-8d3c-5d755c6a17d7')
   survey_info.value = res.data
 })
 </script>
