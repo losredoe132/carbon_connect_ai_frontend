@@ -94,18 +94,7 @@ const bags_images = ref()
 
 const biochar_images_valid = ref(false)
 
-const desired_values_biochar = ref()
-desired_values_biochar.value = {
-  valid_biochar_detected: true,
-  valid_carbonisation: true,
-  valid_image_quality: true,
-  valid_environmental_context: true,
-}
 
-const desired_values_moisture = ref()
-desired_values_moisture.value = {
-  moisture: 15,
-}
 
 const fetchData = async (surveyId) => {
   try {
@@ -118,8 +107,6 @@ const fetchData = async (surveyId) => {
   finally {
     is_loading.value = false
   }
-
-
 
   const survey_meta = data.value.survey_info.meta
 
