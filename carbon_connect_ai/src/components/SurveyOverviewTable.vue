@@ -1,6 +1,6 @@
 <template>
   <q-table
-    title="User List"
+    title="Surveys list"
     :rows="rows"
     :columns="columns"
     row-key="id"
@@ -46,7 +46,7 @@ function onRequest(props) {
   pagination.value = props.pagination
 }
 
-function onRowClick(row) {
+function onRowClick(evt, row) {
   router.push(`/survey/${row.id}`)
 }
 </script>

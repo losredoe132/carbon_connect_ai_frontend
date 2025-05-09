@@ -20,7 +20,7 @@
         <q-expansion-item class="q-mb-md" expand-separator>
           <template #header>
             <div class="row">
-              <q-icon :name="'circle'" :color="biochar_images_valid ? 'green' : 'red'" />
+              <q-icon :name="'circle'" :color="all_biochar_images_valid ? 'green' : 'red'" />
               <div>Biochar Images</div>
             </div>
           </template>
@@ -41,7 +41,7 @@
         <q-expansion-item class="q-mb-md" expand-separator>
           <template #header>
             <div class="row">
-              <q-icon :name="'circle'" :color="biochar_images_valid ? 'green' : 'red'" />
+              <q-icon :name="'circle'" :color="all_moisture_images_valid ? 'green' : 'red'" />
               <div>Moisture Images</div>
             </div>
           </template>
@@ -63,6 +63,7 @@
 
 <script setup>
 import { onMounted, ref } from 'vue'
+import { useRoute } from 'vue-router'
 import { api } from 'boot/axios'
 import SurveyMeta from 'components/SurveyMeta.vue'
 import SurveyImageCard from 'components/SurveyImageCard.vue'
@@ -76,7 +77,10 @@ const timestamp = ref('')
 
 const biochar_images = ref()
 const moisture_images = ref()
-const biochar_images_valid = ref(false)
+const all_biochar_images_valid = ref(false)
+const all_moisture_images_valid = ref(false)
+
+const route = useRoute()
 
 const desired_values_biochar = ref()
 desired_values_biochar.value = {
@@ -102,11 +106,28 @@ const fetchData = async (surveyId) => {
   biochar_images.value = data.biochar_images
   moisture_images.value = data.moisture_images
 
-  biochar_images_valid.value = true
+  const biochar_images_info = data.biochar_images
+  //console.log(biochar_images_info)
+  const pair = []
+
+  for (var key in biochar_images_info) {
+   // eslint-disable-next-line no-constant-condition
+   if (1 >= 0) {
+    console.log("---jonas---");
+    const dict = biochar_images_info[key].response.classification
+    pair.push(dict)
+   }
+   console.log(pair)
+}
+  
+  all_biochar_images_valid.value = true
+  all_moisture_images_valid.value = true
 }
 
+
 onMounted(() => {
-  const res = fetchData('70b69ccb-9fba-49b9-8d3c-5d755c6a17d7')
+  const surveyId = route.params.surveyId
+  const res = fetchData(surveyId)
   survey_info.value = res.data
 })
 </script>
