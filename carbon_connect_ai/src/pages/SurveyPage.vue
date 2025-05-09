@@ -12,15 +12,15 @@
             :observer="observer_name" />
         </q-card>
 
-
-        <q-card>
-          <q-expansion-item class="q-mb-md" expand-separator>
-            <template #header>
-              <div class="row">
-                <q-icon :name="'circle'" :color="biochar_images_valid ? 'green' : 'red'" />
-                <div>Biochar Images</div>
-              </div>
-            </template>
+      <!-- Sections -->
+      <q-card>
+        <q-expansion-item class="q-mb-md" expand-separator>
+          <template #header>
+            <div class="row">
+              <q-icon :name="'circle'" :color="all_biochar_images_valid ? 'green' : 'red'" />
+              <div>Biochar Images</div>
+            </div>
+          </template>
 
             <q-card class="row">
               <div v-for="item in biochar_images" v-bind:key="item.id">
@@ -30,14 +30,14 @@
           </q-expansion-item>
         </q-card>
 
-        <q-card>
-          <q-expansion-item class="q-mb-md" expand-separator>
-            <template #header>
-              <div class="row">
-                <q-icon :name="'circle'" :color="biochar_images_valid ? 'green' : 'red'" />
-                <div>Moisture Images</div>
-              </div>
-            </template>
+      <q-card>
+        <q-expansion-item class="q-mb-md" expand-separator>
+          <template #header>
+            <div class="row">
+              <q-icon :name="'circle'" :color="all_moisture_images_valid ? 'green' : 'red'" />
+              <div>Moisture Images</div>
+            </div>
+          </template>
 
             <q-card class="row">
               <div v-for="item in moisture_images" v-bind:key="item.id">
@@ -71,6 +71,7 @@
 
 <script setup>
 import { onMounted, ref } from 'vue'
+import { useRoute } from 'vue-router'
 import { api } from 'boot/axios'
 import { useRoute } from 'vue-router'
 import SurveyMeta from 'components/SurveyMeta.vue'
@@ -92,7 +93,10 @@ const biochar_images = ref()
 const moisture_images = ref()
 const bags_images = ref()
 
-const biochar_images_valid = ref(false)
+const all_biochar_images_valid = ref(false)
+const all_moisture_images_valid = ref(false)
+
+const route = useRoute()
 
 
 
@@ -119,11 +123,28 @@ const fetchData = async (surveyId) => {
   moisture_images.value = data.value.moisture_images
   bags_images.value = data.value.bags_images
 
-  biochar_images_valid.value = true
+  const biochar_images_info = data.biochar_images
+  //console.log(biochar_images_info)
+  const pair = []
+
+  for (var key in biochar_images_info) {
+   // eslint-disable-next-line no-constant-condition
+   if (1 >= 0) {
+    console.log("---jonas---");
+    const dict = biochar_images_info[key].response.classification
+    pair.push(dict)
+   }
+   console.log(pair)
+}
+  
+  all_biochar_images_valid.value = true
+  all_moisture_images_valid.value = true
 }
 
+
 onMounted(() => {
-  const res = fetchData(survey_id)
+  const surveyId = route.params.surveyId
+  const res = fetchData(surveyId)
   survey_info.value = res.data
 })
 </script>

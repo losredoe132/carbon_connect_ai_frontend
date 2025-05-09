@@ -1,5 +1,15 @@
 <template>
-  <q-table title="Surveys" :rows="rows" :columns="columns" @row-click="onRowClick" />
+  <q-table
+    title="Surveys"
+    :rows="rows"
+    :columns="columns"
+    row-key="id"
+    :pagination="pagination"
+    @request="onRequest"
+    @row-click="onRowClick"
+    class="cursor-pointer"
+  >
+  </q-table>
 </template>
 
 <script setup>
