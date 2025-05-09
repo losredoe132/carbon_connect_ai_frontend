@@ -8,7 +8,7 @@
 
         <q-breadcrumbs active-color="white" style="font-size: 16px">
           <q-breadcrumbs-el label="Overview" to="/" />
-          <q-breadcrumbs-el label="Surveys" to="/survey" />
+          <q-breadcrumbs-el label="Surveys" to="/surveys" />
         </q-breadcrumbs>
       </q-toolbar>
     </q-header>
