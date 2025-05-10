@@ -73,7 +73,6 @@
 import { onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { api } from 'boot/axios'
-import { useRoute } from 'vue-router'
 import SurveyMeta from 'components/SurveyMeta.vue'
 import SurveyImageCard from 'components/SurveyImageCard.vue'
 
@@ -95,9 +94,6 @@ const bags_images = ref()
 
 const all_biochar_images_valid = ref(false)
 const all_moisture_images_valid = ref(false)
-
-const route = useRoute()
-
 
 
 const fetchData = async (surveyId) => {
@@ -123,7 +119,7 @@ const fetchData = async (surveyId) => {
   moisture_images.value = data.value.moisture_images
   bags_images.value = data.value.bags_images
 
-  const biochar_images_info = data.biochar_images
+  const biochar_images_info = data.value.biochar_images
   //console.log(biochar_images_info)
   const pair = []
 
